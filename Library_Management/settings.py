@@ -147,3 +147,7 @@ EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 MEDIA_URL = '/media/'
 # Path where media is stored'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://library-management-system-1-pmcs.onrender.com',
+]
