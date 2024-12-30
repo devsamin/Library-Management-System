@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+ <h3 class="text-white mt-4 p-3">{{request.user.username}} Profile</h3>
+
+
+
+
+<div style="width: 70%; margin: auto;">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Book Id</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Balance After Borrow Book</th>
+      <th scope="col">Purchase Date</th>
+      <th scope="col">Return Book</th>      
+    </tr>
+  </thead>
+ {% for purchase in purchace_book %}
+  <tbody>
+    <tr>
+      <td>{{purchase.id}}</td>
+      <td>{{purchase.book.title}}</td>
+      <td>{{purchase.book.price}}</td>
+      <td>{{purchase.transaction.balance_after_transaction}}</td>
+      <td>{{purchase.transaction.time_stamp}}</td>
+      <td><a class="btn btn-outline-info" href="{% url "return_book" purchase.id %}">Pay</a></td>
+    </tr>
+  </tbody>
+
+
+
+{% endfor %}
+</table>
+</div>
+
+{% endblock content %}

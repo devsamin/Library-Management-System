@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+{% block title %}Book Details{% endblock title %}Book Details
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="col-6 p-5 ">
+        <img  style="max-width: 350px; height: 400px" src="{{book.image.url}}" class="card-img-top" alt="...">
+    </div>
+    <div class="col-6 p-5">
+        <p><strong>Name : </strong>{{book.title}}</p>
+        <p><strong>Category : </strong>{{book.category.category_name}}</p>
+        <p><strong>Price : </strong>{{book.price}}</p>
+        <p><strong>Quantity : </strong>{{book.quantity}}</p>
+        <p><strong>Description : </strong></p>
+        <p>{{book.description}}</p>
+        {% if request.user.is_authenticated %}
+        <a class="btn btn-outline-success"href="{% url "buybook" book.id %}">Borrow Book</a>
+        {% endif %}
+        
+    </div>
+
+</div>
+
+<div class="mt-4">
+    <div class="card">
+  <div class="card-header" style="width: 30%;">
+    <h4><b>Comments</b></h4>
+    <h6>Total Review : {{reviews | length }}</h6>
+  </div>
+  {% for review in reviews %}
+  <div class="card-body border" style="width: 30%;">
+     <h6><b>{{review.book.title}}</b></h6>
+    <h6>{{review.review_text}}</h6>
+</div>
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+<h4 class="m-auto mt-4"><b>ADD REVIEW</b></h4>
+<div>
+    <form method="post" class="mt-4 w-50 m-auto">
+        {% csrf_token %}
+
+        {{review_form}}
+        <button class="btn btn-success mt-3">Add Comment</button>
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock content %}

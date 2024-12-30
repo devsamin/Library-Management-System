@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+
+
+
+<div class="d-flex mt-5">
+  
+  
+  <div class="category-container col-4">
+    <div class="text-center mt-4">
+      <h5><b>FILTER BY BRAND</b></h5>
+    </div>
+    <div class="d-flex flex-column mt-4">
+      {% for category in categorys %}
+      <a class="btn btn-outline-dark my-2 mx-auto" style="width: 50%;" href="{% url "brand" category.slug %}">{{ category }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="all_book-container col-8">
+    <div class="text-center mt-4">
+      <h5><b>TOTAL BOOK IN LIBRARY</b></h5>
+    </div>
+     <div class="col-12 d-flex justify-content-center flex-wrap mt-4 p-2">
+      {% if data %}
+    {% for dt in data %}
+    <div class="card mx-3 mt-2 bg-success"  style="width: 250px; border: 1px solid #ddd; box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);">
+      <div class="card-body text-white">
+        <img src="{{dt.image.url}}" class="card-img-top" style="height: 170px; object-fit: cover;" alt="...">
+        <h5 class="card-title"><strong>{{dt.title}}</strong></h5>
+        <p><strong>Price : </strong>{{dt.price}}</p>
+        <p class="card-text"><p>{{ dt.description|truncatewords:10 }}</p></p>
+        <a href="{% url "details" dt.id %}" class="btn btn-outline-warning">Deatils</a>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+      <div class="text-center mt-5">
+          <h5 class="text-danger"><b>No books available in this category!</b></h5>
+        </div>
+        {% endif %}
+  </div>
+  </div>
+
+</div>
+
+
+{% endblock content %}

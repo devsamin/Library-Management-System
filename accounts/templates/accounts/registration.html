@@ -1,0 +1,72 @@
+{% extends "core/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="mt-4 ">
+
+    <form class="bg-success" method="post" style="width: 40%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+    {% csrf_token %}
+    <div class="row bg-success">
+        <!-- First Column -->
+        <div class="col-12 col-md-6 mb-3">
+            <div class="form-group text-white">
+                {{ form.username.label }} 
+                {{ form.username }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.first_name.label }} 
+                {{ form.first_name }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.last_name.label }} 
+                {{ form.last_name }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.email.label }} 
+                {{ form.email }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.birth_date.label }} 
+                {{ form.birth_date }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.gender.label }} 
+                {{ form.gender }}
+            </div>
+        </div>
+        <!-- Second Column -->
+        <div class="col-12 col-md-6 mb-3">
+            <div class="form-group text-white">
+                {{ form.password1.label }} 
+                {{ form.password1 }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.password2.label }} 
+                {{ form.password2 }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.street_address.label }} 
+                {{ form.street_address }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.city.label }} 
+                {{ form.city }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.postal_code.label }} 
+                {{ form.postal_code }}
+            </div>
+            <div class="form-group text-white">
+                {{ form.country.label }} 
+                {{ form.country }}
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-info  py-1 px-3 rounded-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:bg-primary-dark mt-3" type="submit">
+        Register
+    </button>
+</form>
+</div>
+{% endblock content %}
+
+

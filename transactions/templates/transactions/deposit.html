@@ -1,0 +1,41 @@
+{% extends "core/base.html"%} 
+{% block title %}Deposit{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Deposit Form</h4>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+
+            <!-- Render form fields -->
+            <div class="mb-3">
+              
+              {{ form | crispy }}
+            </div>
+
+            <!-- Error Messages -->
+            {% if form.amount.errors %}
+            <div class="text-danger">
+              {% for error in form.amount.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success w-100">Deposit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
